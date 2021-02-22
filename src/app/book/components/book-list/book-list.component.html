@@ -1,0 +1,3 @@
+<div class="product__list">
+  <app-book *ngFor="let book of bookList" [product]="book" (onBuy)="service.buy($event)"></app-book>
+</div>

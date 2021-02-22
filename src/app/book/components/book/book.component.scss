@@ -1,0 +1,129 @@
+.product {
+  margin-top: 2rem;
+  padding: 2rem;
+  position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  &::before, &::after {
+    content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+  }
+  &::after {
+    right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+       -moz-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+         -o-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
+  }
+  &__title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  &__wrapper {
+    display: flex;
+    gap: 1.5rem;
+  }
+  &__img {
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    img {
+      object-fit: cover;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+  }
+  &__info {
+    border-left: 1px dashed rgb(68, 68, 68);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  &__category {
+    color: rgb(68, 68, 68);
+  }
+  &__descr {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 12;
+    line-height: 1.2rem;
+    max-height: 15.4rem;
+  }
+  &__create-date {
+    font-weight: 300;
+  }
+  &__footer {
+    margin-top: 2rem;
+    padding: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  &__price {
+    font-weight: 800;
+    padding: 8px;
+    border-bottom: 1px solid #3498db;
+  }
+  &__btn {
+    font-size: 1rem;
+    padding: 0.75rem 0.65rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  &__btn_enabled {
+    background: #3498db;
+    color: #fff;
+    border: 0.25rem solid #3498db;
+    &:hover {
+      color: #3498db;
+    }
+    &::after {
+      content: "";
+      background: #ecf0f1;
+      position: absolute;
+      z-index: -1;
+      padding: 0.75rem 0.65rem;
+      display: block;
+      transition: all 0.3s ease;
+    }
+    &:hover::after {
+      transition: all 0.3s ease-out;
+    }
+    &::after {
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transform: scale(0, 0);
+    }
+    &:hover::after {
+      transform: scale(1, 1);
+    }
+  }
+  &__btn_disabled {
+    background: transparent;
+    color: grey
+  }
+}
