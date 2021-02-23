@@ -1,0 +1,54 @@
+.product__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+.product__title {
+  font-weight: 700;
+  padding: 8px;
+}
+.product__subtitle {
+  padding: 8px;
+}
+.product__counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+.product__footer {
+  padding: 8px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  font-weight: 700;
+  border-width: 1px;
+  border-style: solid;
+  background: transparent;
+  cursor: pointer;
+  transition: all .3s ease-out;
+  &:hover {
+    color: #fff;
+  }
+  &__minus {
+    color: red;
+    border-color: red;
+    &:hover {
+      background: red;
+    }
+  }
+  &__plus {
+    color: green;
+    border-color: green;
+    &:hover {
+      background: green;
+    }
+  }
+}

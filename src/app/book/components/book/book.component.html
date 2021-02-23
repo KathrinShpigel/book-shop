@@ -1,0 +1,20 @@
+<div class="product">
+  <p class="product__title">Книга: {{ product.name }}</p>
+  <div class="product__wrapper">
+    <div class="product__img">
+      <img [src]="product?.img" [alt]="product?.name">
+    </div>
+    <div class="product__info">
+      <p class="product__category">Категория: {{ product.category }}</p>
+      <p class="product__descr">Аннотация к книге:{{ product.description }}</p>
+      <p class="product__create-date">Дата издания: {{ product.createDate }}</p>
+    </div>
+  </div>
+  <div class="product__footer">
+    <span class="product__price">Цена: {{ product.price | number:'3.2-2' }} руб.</span>
+    <button class="product__btn"
+    [ngClass]="!product.isAvailable ? 'product__btn_disabled' : 'product__btn_enabled'"
+    value="В корзину" [disabled]="!product.isAvailable"
+    (click)="buy()">В корзину</button>
+  </div>
+</div>

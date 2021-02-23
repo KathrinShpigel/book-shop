@@ -1,0 +1,15 @@
+<div class="product">
+  <div class="product__header">
+    <button class="btn btn__minus" (click)="pushDelete()">x</button>
+    <div class="header__content">
+      <div class="product__subtitle">Цена: {{ product.price  | number:'3.2-2' }} руб.</div>
+      <div class="product__title">Книга: {{ product.name }}</div>
+    </div>
+  </div>
+  <div class="product__counter">
+    <span>Количество: {{ product.count }}</span>
+    <button class="btn btn__minus" (click)="pushMinus()">-</button>
+    <button class="btn btn__plus" (click)="pushPlus()">+</button>
+  </div>
+  <div class="product__footer">Стоимость: {{ product.price*product.count  | number:'3.2-2' }} руб.</div>
+</div>
