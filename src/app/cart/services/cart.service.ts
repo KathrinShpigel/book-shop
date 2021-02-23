@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ICartItem } from '../models/cartModel';
 import { IBook } from '../../book/models/bookModel';
+import { LocalStorageService } from '../../core/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,21 @@ import { IBook } from '../../book/models/bookModel';
 export class CartService {
 
   productsList: ICartItem[];
+  totalQuantity: number;
+  totalSum: number;
 
-  constructor() {
+  constructor(
+    public lsService: LocalStorageService,
+  ) {
     if ('productsList' in localStorage) {
-      this.productsList = JSON.parse(localStorage.getItem('productsList'));
+      this.productsList = this.lsService.getItem('productsList');
+      this.updateCartData();
     } else {
       this.productsList = [];
     }
   }
 
-  addProductToCart(product: IBook): void {
+  addBook(product: IBook): void {
     const index = this.productsList.findIndex(el => el.id === product.id);
 
     if (index !== -1) {
@@ -31,9 +37,8 @@ export class CartService {
         count: 1,
       });
     }
-
-    localStorage.setItem('productsList', JSON.stringify(this.productsList));
-    console.log(this.productsList);
+    this.lsService.setItem('productsList', this.productsList);
+    this.updateCartData();
   }
 
   calcCount(): number {
@@ -49,7 +54,13 @@ export class CartService {
     }
     return 0;
   }
-  calcMinus(targetData: ICartItem): void {
+
+  updateCartData(): void {
+    this.totalQuantity = this.calcCount();
+    this.totalSum = this.calcCost();
+  }
+
+  decreaseQuantity(targetData: ICartItem): void {
     const index = this.productsList.findIndex(el => el.id === targetData.id);
 
     if (index !== -1) {
@@ -59,25 +70,28 @@ export class CartService {
         this.productsList.splice(index, 1);
       }
     }
-    localStorage.setItem('productsList', JSON.stringify(this.productsList));
+    this.lsService.setItem('productsList', this.productsList);
+    this.updateCartData();
   }
 
-  calcPlus(targetData: ICartItem): void {
+  increaseQuantity(targetData: ICartItem): void {
     const index = this.productsList.findIndex(el => el.id === targetData.id);
 
     if (index !== -1) {
       this.productsList[index].count++;
     }
-    localStorage.setItem('productsList', JSON.stringify(this.productsList));
+    this.lsService.setItem('productsList', this.productsList);
+    this.updateCartData();
   }
 
-  deleteItem(targetData: ICartItem): void {
+  removeBook(targetData: ICartItem): void {
     const index = this.productsList.findIndex(el => el.id === targetData.id);
 
     if (index !== -1) {
       this.productsList.splice(index, 1);
     }
-    localStorage.setItem('productsList', JSON.stringify(this.productsList));
+    this.lsService.setItem('productsList', this.productsList);
+    this.updateCartData();
   }
 
   alert(): void {
@@ -86,7 +100,8 @@ export class CartService {
 
   submit(): void {
     this.productsList = [];
-    localStorage.clear;
+    this.lsService.removeItem('productsList');
+    this.updateCartData();
   }
 
 }

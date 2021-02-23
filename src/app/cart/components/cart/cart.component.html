@@ -2,15 +2,15 @@
   <p class="cart__title">Корзина</p>
   <details *ngIf="service.productsList.length; else other">
     <summary>
-      Книг в корзине: {{ service.calcCount() }} шт.,
-      общей стоимостью: {{ service.calcCost() | number:'3.2-2' }} руб.
+      Книг в корзине: {{ service.totalQuantity }} шт.,
+      общей стоимостью: {{ service.totalSum | number:'3.2-2' }} руб.
     </summary>
     <ol class="cart__list">
       <li *ngFor="let item of service.productsList"><a href="#">
         <app-cart-item [product]="item"
-        (onMinus)="service.calcMinus($event)"
-        (onPlus)="service.calcPlus($event)"
-        (onDelete)="service.deleteItem($event)"></app-cart-item>
+        (onMinus)="service.decreaseQuantity($event)"
+        (onPlus)="service.increaseQuantity($event)"
+        (onDelete)="service.removeBook($event)"></app-cart-item>
       </a></li>
     </ol>
     <div class="btn__wrapper">
