@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { IBook } from '../models/bookModel';
 import { CartService } from '../../cart/services/cart.service';
+import { bookList } from '../../data';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,11 @@ export class BookService {
     public cartService: CartService,
   ) {}
 
+  getBooks(): IBook[] {
+    return bookList;
+  }
+
   buy(targetData: IBook): void {
-    this.cartService.addProductToCart(targetData);
+    this.cartService.addBook(targetData);
   }
 }
