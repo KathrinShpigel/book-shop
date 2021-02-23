@@ -11,7 +11,7 @@ export class GeneratorService {
     const charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let randomString = '';
 
-    for (var i = 0; i < n; i++) {
+    for (let i = 0; i < n; i++) {
       const randomPoz = Math.floor(Math.random() * charSet.length);
       randomString += charSet.substring(randomPoz,randomPoz+1);
     }
